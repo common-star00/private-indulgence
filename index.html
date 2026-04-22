@@ -1,120 +1,382 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Private Indulgence</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Private Indulgence</title>
+  <style>
+    :root{
+      --bg:#0b0b0d;
+      --panel:#141417;
+      --panel-2:#1b1b20;
+      --gold:#d4af37;
+      --text:#f5f5f5;
+      --muted:#b7b7bf;
+      --line:rgba(212,175,55,0.18);
+    }
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #0b0b0b;
-    color: white;
-}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(180deg,#080809 0%, #111114 100%);
+      color:var(--text);
+    }
 
-header {
-    text-align: center;
-    padding: 100px 20px;
-    background: linear-gradient(to bottom, #000, #111);
-}
+    a{text-decoration:none;color:inherit}
 
-h1 {
-    font-size: 50px;
-    color: #d4af37;
-    letter-spacing: 2px;
-}
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:100;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:16px 24px;
+      background:rgba(10,10,12,0.88);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
 
-p.tagline {
-    font-size: 18px;
-    opacity: 0.8;
-}
+    .brand{
+      font-size:20px;
+      font-weight:700;
+      letter-spacing:1px;
+      color:var(--gold);
+    }
 
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 40px 20px;
-}
+    .nav-links{
+      display:flex;
+      gap:18px;
+      color:var(--muted);
+      font-size:14px;
+    }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-}
+    .hero{
+      min-height:72vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:80px 20px 60px;
+      background:
+        radial-gradient(circle at top, rgba(212,175,55,0.18), transparent 30%),
+        linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+        url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      border-bottom:1px solid var(--line);
+    }
 
-.card {
-    background: #151515;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: 0.3s;
-}
+    .hero-inner{
+      max-width:900px;
+    }
 
-.card:hover {
-    transform: scale(1.03);
-}
+    .hero h1{
+      margin:0 0 14px;
+      font-size:56px;
+      line-height:1.05;
+      letter-spacing:1px;
+      color:var(--gold);
+    }
 
-.card img {
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
-}
+    .hero p{
+      margin:0 auto 28px;
+      max-width:760px;
+      color:#ececec;
+      font-size:18px;
+      line-height:1.6;
+    }
 
-.card h3 {
-    margin: 10px;
-    color: #d4af37;
-}
+    .btn-row{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
 
-.card p {
-    margin: 0 10px 10px;
-    opacity: 0.8;
-}
+    .btn{
+      display:inline-block;
+      padding:14px 22px;
+      border-radius:999px;
+      font-weight:700;
+      transition:0.25s ease;
+    }
 
-footer {
-    text-align: center;
-    padding: 30px;
-    background: #111;
-    font-size: 14px;
-    opacity: 0.6;
-}
-</style>
+    .btn-primary{
+      background:var(--gold);
+      color:#111;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      opacity:0.95;
+    }
+
+    .btn-secondary{
+      border:1px solid var(--line);
+      color:#fff;
+      background:rgba(255,255,255,0.03);
+    }
+
+    .section{
+      width:min(1180px, 92%);
+      margin:0 auto;
+      padding:72px 0;
+    }
+
+    .section-head{
+      margin-bottom:28px;
+    }
+
+    .eyebrow{
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:12px;
+      margin-bottom:10px;
+    }
+
+    .section h2{
+      margin:0 0 10px;
+      font-size:34px;
+    }
+
+    .section p.lead{
+      margin:0;
+      color:var(--muted);
+      max-width:760px;
+      line-height:1.7;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:24px;
+      margin-top:30px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, var(--panel), var(--panel-2));
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 20px 50px rgba(0,0,0,0.28);
+      transition:transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+      border-color:var(--line);
+    }
+
+    .card img{
+      width:100%;
+      height:340px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .card-body{
+      padding:18px;
+    }
+
+    .card h3{
+      margin:0 0 6px;
+      font-size:24px;
+      color:var(--gold);
+    }
+
+    .card .subtitle{
+      margin:0 0 12px;
+      color:#e9e9e9;
+      font-size:14px;
+    }
+
+    .card .desc{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.65;
+    }
+
+    .card .tag{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(212,175,55,0.1);
+      color:#f3df9a;
+      font-size:12px;
+      margin-right:8px;
+      margin-bottom:8px;
+    }
+
+    .about-box{
+      background:linear-gradient(180deg, var(--panel), var(--panel-2));
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:22px;
+      padding:28px;
+      line-height:1.8;
+      color:var(--muted);
+    }
+
+    .contact-box{
+      display:grid;
+      grid-template-columns:1.1fr 0.9fr;
+      gap:24px;
+    }
+
+    .contact-panel{
+      background:linear-gradient(180deg, var(--panel), var(--panel-2));
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:22px;
+      padding:28px;
+    }
+
+    .contact-panel h3{
+      margin-top:0;
+      color:var(--gold);
+    }
+
+    .contact-list{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      color:var(--muted);
+    }
+
+    .footer{
+      border-top:1px solid var(--line);
+      padding:28px 20px 42px;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    @media (max-width: 860px){
+      .hero h1{font-size:40px}
+      .contact-box{grid-template-columns:1fr}
+      .nav{padding:14px 16px}
+      .nav-links{gap:12px;font-size:13px}
+    }
+
+    @media (max-width: 560px){
+      .hero h1{font-size:34px}
+      .hero p{font-size:16px}
+      .nav-links{display:none}
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-    <h1>Private Indulgence</h1>
-    <p class="tagline">Discretion. Elegance. Indulgence.</p>
-</header>
+  <nav class="nav">
+    <div class="brand">Private Indulgence</div>
+    <div class="nav-links">
+      <a href="#profiles">Profiles</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-<div class="container">
-    <h2>Our Companions</h2>
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Discretion. Elegance. Indulgence.</h1>
+      <p>
+        A refined showcase of confident, captivating personalities presented with a luxury-first aesthetic and a smooth, discreet browsing experience.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#profiles">View Profiles</a>
+        <a class="btn btn-secondary" href="#contact">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="profiles">
+    <div class="section-head">
+      <div class="eyebrow">Featured Profiles</div>
+      <h2>Curated Presentation</h2>
+      <p class="lead">
+        Each profile is designed to be clean, polished, and easy to browse. Add, remove, or update cards anytime by editing one section of this file.
+      </p>
+    </div>
 
     <div class="grid">
-
-        <div class="card">
-            <img src="https://via.placeholder.com/300x400">
-            <h3>Priya</h3>
-            <p>Elegant & captivating</p>
+      <div class="card">
+        <img src="https://via.placeholder.com/700x900/1a1a1a/d4af37?text=Priya" alt="Priya">
+        <div class="card-body">
+          <h3>Priya</h3>
+          <p class="subtitle">Elegant • Warm • Refined</p>
+          <p class="desc">Soft presence, polished style, and a naturally inviting energy presented through a luxury-forward profile.</p>
+          <span class="tag">Featured</span>
+          <span class="tag">Toronto</span>
         </div>
+      </div>
 
-        <div class="card">
-            <img src="https://via.placeholder.com/300x400">
-            <h3>Violet</h3>
-            <p>Soft & playful</p>
+      <div class="card">
+        <img src="https://via.placeholder.com/700x900/1a1a1a/d4af37?text=Violet" alt="Violet">
+        <div class="card-body">
+          <h3>Violet</h3>
+          <p class="subtitle">Playful • Sweet • Charming</p>
+          <p class="desc">A bright, feminine profile with soft styling and an approachable, memorable presentation.</p>
+          <span class="tag">New</span>
+          <span class="tag">Toronto</span>
         </div>
+      </div>
 
-        <div class="card">
-            <img src="https://via.placeholder.com/300x400">
-            <h3>Scarlett</h3>
-            <p>Bold & unforgettable</p>
+      <div class="card">
+        <img src="https://via.placeholder.com/700x900/1a1a1a/d4af37?text=Scarlett" alt="Scarlett">
+        <div class="card-body">
+          <h3>Scarlett</h3>
+          <p class="subtitle">Bold • Confident • Unforgettable</p>
+          <p class="desc">A striking profile built around confidence, luxury aesthetics, and strong visual presentation.</p>
+          <span class="tag">Popular</span>
+          <span class="tag">Toronto</span>
         </div>
-
+      </div>
     </div>
-</div>
+  </section>
 
-<footer>
+  <section class="section" id="about">
+    <div class="section-head">
+      <div class="eyebrow">About</div>
+      <h2>Built To Be Easy To Maintain</h2>
+    </div>
+
+    <div class="about-box">
+      Private Indulgence is a clean, luxury-style showcase built for simple updates and polished presentation. The structure is intentionally beginner-friendly, so new profiles can be added quickly by duplicating a card and replacing the name, image, and description. The design stays elegant on both desktop and mobile without requiring ongoing costs or advanced coding.
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="section-head">
+      <div class="eyebrow">Contact</div>
+      <h2>Simple & Professional</h2>
+      <p class="lead">Use this section for general inquiries, brand contact details, or your preferred introduction method.</p>
+    </div>
+
+    <div class="contact-box">
+      <div class="contact-panel">
+        <h3>Contact Details</h3>
+        <div class="contact-list">
+          <div>Email: your@email.com</div>
+          <div>Instagram: @yourhandle</div>
+          <div>Location: Toronto, Ontario</div>
+        </div>
+      </div>
+
+      <div class="contact-panel">
+        <h3>Editing Notes</h3>
+        <div class="contact-list">
+          <div>Replace placeholder images with your own image links.</div>
+          <div>Duplicate a profile card to add another person.</div>
+          <div>Change text directly in this file whenever needed.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
     © Private Indulgence
-</footer>
+  </footer>
 
 </body>
 </html>
