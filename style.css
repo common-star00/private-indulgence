@@ -97,7 +97,11 @@ h1, h2 {
   border-radius: 22px;
   border: 1px solid rgba(181,140,255,.35);
   box-shadow: 0 0 45px rgba(181,140,255,.3);
-  animation: menuDrop .25s ease both;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(25px) scale(.96);
+  transition: .3s ease;
 }
 
 @keyframes menuDrop {
