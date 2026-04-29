@@ -3,380 +3,255 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Private Indulgence</title>
+  <title>PureViolet</title>
+
   <style>
-    :root{
-      --bg:#0b0b0d;
-      --panel:#141417;
-      --panel-2:#1b1b20;
-      --gold:#d4af37;
-      --text:#f5f5f5;
-      --muted:#b7b7bf;
-      --line:rgba(212,175,55,0.18);
+    :root {
+      --primary: #6E3BB8;
+      --secondary: #B58CFF;
+      --background: #0F061A;
+      --accent: #9C5CFF;
+      --gold: #F6DD99;
+      --text: #F7F1FF;
+      --muted: #CDBBEA;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Arial, Helvetica, sans-serif;
-      background:linear-gradient(180deg,#080809 0%, #111114 100%);
-      color:var(--text);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    a{text-decoration:none;color:inherit}
-
-    .nav{
-      position:sticky;
-      top:0;
-      z-index:100;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:16px 24px;
-      background:rgba(10,10,12,0.88);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid var(--line);
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      overflow-x: hidden;
     }
 
-    .brand{
-      font-size:20px;
-      font-weight:700;
-      letter-spacing:1px;
-      color:var(--gold);
+    h1, h2 {
+      font-family: Georgia, serif;
+      font-weight: 400;
     }
 
-    .nav-links{
-      display:flex;
-      gap:18px;
-      color:var(--muted);
-      font-size:14px;
+    .menu-button {
+      position: fixed;
+      top: 25px;
+      right: 25px;
+      z-index: 1000;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 14px 18px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 0 25px rgba(181, 140, 255, 0.5);
     }
 
-    .hero{
-      min-height:72vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:80px 20px 60px;
+    .side-menu {
+      position: fixed;
+      top: 80px;
+      right: 25px;
+      background: rgba(15, 6, 26, 0.95);
+      border: 1px solid var(--secondary);
+      border-radius: 18px;
+      padding: 20px;
+      display: none;
+      z-index: 999;
+      box-shadow: 0 0 30px rgba(181, 140, 255, 0.35);
+    }
+
+    .side-menu a {
+      display: block;
+      color: var(--text);
+      text-decoration: none;
+      margin: 14px 0;
+      font-size: 16px;
+    }
+
+    .side-menu a:hover {
+      color: var(--secondary);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
       background:
-        radial-gradient(circle at top, rgba(212,175,55,0.18), transparent 30%),
-        linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
-        url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      border-bottom:1px solid var(--line);
+        radial-gradient(circle at top, rgba(181, 140, 255, 0.25), transparent 35%),
+        linear-gradient(180deg, #140820, var(--background));
     }
 
-    .hero-inner{
-      max-width:900px;
+    .hero-content {
+      max-width: 850px;
     }
 
-    .hero h1{
-      margin:0 0 14px;
-      font-size:56px;
-      line-height:1.05;
-      letter-spacing:1px;
-      color:var(--gold);
+    .logo {
+      width: min(90%, 520px);
+      border-radius: 24px;
+      box-shadow: 0 0 55px rgba(156, 92, 255, 0.35);
+      margin-bottom: 35px;
     }
 
-    .hero p{
-      margin:0 auto 28px;
-      max-width:760px;
-      color:#ececec;
-      font-size:18px;
-      line-height:1.6;
+    .hero h1 {
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      color: var(--secondary);
+      margin-bottom: 18px;
     }
 
-    .btn-row{
-      display:flex;
-      justify-content:center;
-      gap:14px;
-      flex-wrap:wrap;
+    .hero p {
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      color: var(--muted);
+      margin-bottom: 30px;
+      letter-spacing: 1px;
     }
 
-    .btn{
-      display:inline-block;
-      padding:14px 22px;
-      border-radius:999px;
-      font-weight:700;
-      transition:0.25s ease;
+    .cta {
+      display: inline-block;
+      padding: 15px 34px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 30px rgba(181, 140, 255, 0.45);
     }
 
-    .btn-primary{
-      background:var(--gold);
-      color:#111;
+    section {
+      padding: 90px 22px;
+      max-width: 1000px;
+      margin: auto;
     }
 
-    .btn-primary:hover{
-      transform:translateY(-2px);
-      opacity:0.95;
+    .section-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(181, 140, 255, 0.25);
+      border-radius: 28px;
+      padding: 45px;
+      box-shadow: 0 0 35px rgba(110, 59, 184, 0.2);
     }
 
-    .btn-secondary{
-      border:1px solid var(--line);
-      color:#fff;
-      background:rgba(255,255,255,0.03);
+    section h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--secondary);
+      margin-bottom: 24px;
     }
 
-    .section{
-      width:min(1180px, 92%);
-      margin:0 auto;
-      padding:72px 0;
+    section p {
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 18px;
     }
 
-    .section-head{
-      margin-bottom:28px;
+    .gold {
+      color: var(--gold);
     }
 
-    .eyebrow{
-      color:var(--gold);
-      text-transform:uppercase;
-      letter-spacing:2px;
-      font-size:12px;
-      margin-bottom:10px;
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      color: var(--muted);
+      font-size: 14px;
     }
 
-    .section h2{
-      margin:0 0 10px;
-      font-size:34px;
-    }
+    @media (max-width: 700px) {
+      .section-card {
+        padding: 28px;
+      }
 
-    .section p.lead{
-      margin:0;
-      color:var(--muted);
-      max-width:760px;
-      line-height:1.7;
-    }
+      .menu-button {
+        top: 18px;
+        right: 18px;
+      }
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-      gap:24px;
-      margin-top:30px;
-    }
-
-    .card{
-      background:linear-gradient(180deg, var(--panel), var(--panel-2));
-      border:1px solid rgba(255,255,255,0.06);
-      border-radius:20px;
-      overflow:hidden;
-      box-shadow:0 20px 50px rgba(0,0,0,0.28);
-      transition:transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .card:hover{
-      transform:translateY(-6px);
-      border-color:var(--line);
-    }
-
-    .card img{
-      width:100%;
-      height:340px;
-      object-fit:cover;
-      display:block;
-    }
-
-    .card-body{
-      padding:18px;
-    }
-
-    .card h3{
-      margin:0 0 6px;
-      font-size:24px;
-      color:var(--gold);
-    }
-
-    .card .subtitle{
-      margin:0 0 12px;
-      color:#e9e9e9;
-      font-size:14px;
-    }
-
-    .card .desc{
-      margin:0 0 18px;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.65;
-    }
-
-    .card .tag{
-      display:inline-block;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(212,175,55,0.1);
-      color:#f3df9a;
-      font-size:12px;
-      margin-right:8px;
-      margin-bottom:8px;
-    }
-
-    .about-box{
-      background:linear-gradient(180deg, var(--panel), var(--panel-2));
-      border:1px solid rgba(255,255,255,0.06);
-      border-radius:22px;
-      padding:28px;
-      line-height:1.8;
-      color:var(--muted);
-    }
-
-    .contact-box{
-      display:grid;
-      grid-template-columns:1.1fr 0.9fr;
-      gap:24px;
-    }
-
-    .contact-panel{
-      background:linear-gradient(180deg, var(--panel), var(--panel-2));
-      border:1px solid rgba(255,255,255,0.06);
-      border-radius:22px;
-      padding:28px;
-    }
-
-    .contact-panel h3{
-      margin-top:0;
-      color:var(--gold);
-    }
-
-    .contact-list{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      color:var(--muted);
-    }
-
-    .footer{
-      border-top:1px solid var(--line);
-      padding:28px 20px 42px;
-      text-align:center;
-      color:var(--muted);
-      font-size:14px;
-    }
-
-    @media (max-width: 860px){
-      .hero h1{font-size:40px}
-      .contact-box{grid-template-columns:1fr}
-      .nav{padding:14px 16px}
-      .nav-links{gap:12px;font-size:13px}
-    }
-
-    @media (max-width: 560px){
-      .hero h1{font-size:34px}
-      .hero p{font-size:16px}
-      .nav-links{display:none}
+      .side-menu {
+        right: 18px;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <nav class="nav">
-    <div class="brand">Private Indulgence</div>
-    <div class="nav-links">
-      <a href="#profiles">Profiles</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
+  <button class="menu-button" onclick="toggleMenu()">☰</button>
 
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>Discretion. Elegance. Indulgence.</h1>
+  <div class="side-menu" id="sideMenu">
+    <a href="#home">Home</a>
+    <a href="#mission">Mission</a>
+    <a href="#about">Dear Lover</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <main id="home" class="hero">
+    <div class="hero-content">
+      <img src="pureviolet-logo.jpg" alt="PureViolet Logo" class="logo" />
+
+      <h1>PureViolet</h1>
+      <p>Refined indulgence. Unforgettable connection.</p>
+
+      <a href="#about" class="cta">Enter My World</a>
+    </div>
+  </main>
+
+  <section id="mission">
+    <div class="section-card">
+      <h2>Our Mission</h2>
       <p>
-        A refined showcase of confident, captivating personalities presented with a luxury-first aesthetic and a smooth, discreet browsing experience.
+        PureViolet was created to offer more than attention — it was designed to create atmosphere,
+        elegance, and a feeling that lingers long after the moment has passed.
       </p>
-      <div class="btn-row">
-        <a class="btn btn-primary" href="#profiles">View Profiles</a>
-        <a class="btn btn-secondary" href="#contact">Get In Touch</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="profiles">
-    <div class="section-head">
-      <div class="eyebrow">Featured Profiles</div>
-      <h2>Curated Presentation</h2>
-      <p class="lead">
-        Each profile is designed to be clean, polished, and easy to browse. Add, remove, or update cards anytime by editing one section of this file.
+      <p>
+        Every detail is intentional: soft mystery, polished presentation, thoughtful communication,
+        and an experience rooted in respect, discretion, and connection.
       </p>
     </div>
+  </section>
 
-    <div class="grid">
-      <div class="card">
-        <img src="https://via.placeholder.com/700x900/1a1a1a/d4af37?text=Priya" alt="Priya">
-        <div class="card-body">
-          <h3>Priya</h3>
-          <p class="subtitle">Elegant • Warm • Refined</p>
-          <p class="desc">Soft presence, polished style, and a naturally inviting energy presented through a luxury-forward profile.</p>
-          <span class="tag">Featured</span>
-          <span class="tag">Toronto</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://via.placeholder.com/700x900/1a1a1a/d4af37?text=Violet" alt="Violet">
-        <div class="card-body">
-          <h3>Violet</h3>
-          <p class="subtitle">Playful • Sweet • Charming</p>
-          <p class="desc">A bright, feminine profile with soft styling and an approachable, memorable presentation.</p>
-          <span class="tag">New</span>
-          <span class="tag">Toronto</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://via.placeholder.com/700x900/1a1a1a/d4af37?text=Scarlett" alt="Scarlett">
-        <div class="card-body">
-          <h3>Scarlett</h3>
-          <p class="subtitle">Bold • Confident • Unforgettable</p>
-          <p class="desc">A striking profile built around confidence, luxury aesthetics, and strong visual presentation.</p>
-          <span class="tag">Popular</span>
-          <span class="tag">Toronto</span>
-        </div>
-      </div>
+  <section id="about">
+    <div class="section-card">
+      <h2>Dear Lover</h2>
+      <p>
+        Welcome to my world — a place where softness meets confidence, where charm is quiet,
+        and where presence matters more than noise.
+      </p>
+      <p>
+        I believe in elegance, chemistry, meaningful energy, and moments that feel personal,
+        never rushed. PureViolet is not simply a name. It is a mood, a memory, and an invitation.
+      </p>
+      <p class="gold">
+        I prioritize respectful, well-written inquiries and genuine connection.
+      </p>
     </div>
   </section>
 
-  <section class="section" id="about">
-    <div class="section-head">
-      <div class="eyebrow">About</div>
-      <h2>Built To Be Easy To Maintain</h2>
-    </div>
-
-    <div class="about-box">
-      Private Indulgence is a clean, luxury-style showcase built for simple updates and polished presentation. The structure is intentionally beginner-friendly, so new profiles can be added quickly by duplicating a card and replacing the name, image, and description. The design stays elegant on both desktop and mobile without requiring ongoing costs or advanced coding.
-    </div>
-  </section>
-
-  <section class="section" id="contact">
-    <div class="section-head">
-      <div class="eyebrow">Contact</div>
-      <h2>Simple & Professional</h2>
-      <p class="lead">Use this section for general inquiries, brand contact details, or your preferred introduction method.</p>
-    </div>
-
-    <div class="contact-box">
-      <div class="contact-panel">
-        <h3>Contact Details</h3>
-        <div class="contact-list">
-          <div>Email: your@email.com</div>
-          <div>Instagram: @yourhandle</div>
-          <div>Location: Toronto, Ontario</div>
-        </div>
-      </div>
-
-      <div class="contact-panel">
-        <h3>Editing Notes</h3>
-        <div class="contact-list">
-          <div>Replace placeholder images with your own image links.</div>
-          <div>Duplicate a profile card to add another person.</div>
-          <div>Change text directly in this file whenever needed.</div>
-        </div>
-      </div>
+  <section id="contact">
+    <div class="section-card">
+      <h2>Request My Time</h2>
+      <p>
+        For serious and respectful inquiries, please include your name or alias, requested date,
+        preferred time, duration, and a brief introduction.
+      </p>
+      <p>
+        Toronto / GTA based. Select travel may be available.
+      </p>
     </div>
   </section>
 
-  <footer class="footer">
-    © Private Indulgence
+  <footer>
+    © 2026 PureViolet. All rights reserved.
   </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("sideMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+  </script>
 
 </body>
 </html>
