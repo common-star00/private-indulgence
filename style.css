@@ -203,3 +203,31 @@ p {
   margin-top: 25px;
   font-style: italic;
 }
+
+.location-card {
+  max-width: 620px;
+  margin: 35px auto 0;
+  padding: 34px 26px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(181, 140, 255, 0.28);
+  box-shadow:
+    0 0 35px rgba(181, 140, 255, 0.22),
+    inset 0 0 25px rgba(181, 140, 255, 0.05);
+  backdrop-filter: blur(14px);
+  animation: fadeUp 1s ease both;
+}
+
+.location-address {
+  color: var(--gold);
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+}
+
+.location-card::before {
+  content: "📍";
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 12px rgba(181,140,255,.7));
+}
