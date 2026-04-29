@@ -1,257 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PureViolet</title>
 
   <style>
-    :root {
-      --primary: #6E3BB8;
-      --secondary: #B58CFF;
-      --background: #0F061A;
-      --accent: #9C5CFF;
-      --gold: #F6DD99;
-      --text: #F7F1FF;
-      --muted: #CDBBEA;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      background: var(--background);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    h1, h2 {
-      font-family: Georgia, serif;
-      font-weight: 400;
-    }
-
-    .menu-button {
-      position: fixed;
-      top: 25px;
-      right: 25px;
-      z-index: 1000;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      border: none;
-      padding: 14px 18px;
-      border-radius: 50px;
-      cursor: pointer;
-      font-size: 18px;
-      box-shadow: 0 0 25px rgba(181, 140, 255, 0.5);
-    }
-
-    .side-menu {
-      position: fixed;
-      top: 80px;
-      right: 25px;
-      background: rgba(15, 6, 26, 0.95);
-      border: 1px solid var(--secondary);
-      border-radius: 18px;
-      padding: 20px;
-      display: none;
-      z-index: 999;
-      box-shadow: 0 0 30px rgba(181, 140, 255, 0.35);
-    }
-
-    .side-menu a {
-      display: block;
-      color: var(--text);
-      text-decoration: none;
-      margin: 14px 0;
-      font-size: 16px;
-    }
-
-    .side-menu a:hover {
-      color: var(--secondary);
-    }
-
-    .hero {
-      min-height: 100vh;
+      background: #0F061A;
+      color: #F7F1FF;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      height: 100vh;
       text-align: center;
-      padding: 40px 20px;
-      background:
-        radial-gradient(circle at top, rgba(181, 140, 255, 0.25), transparent 35%),
-        linear-gradient(180deg, #140820, var(--background));
     }
 
-    .hero-content {
-      max-width: 850px;
+    .container {
+      max-width: 800px;
+      padding: 20px;
     }
 
     .logo {
-      width: min(90%, 520px);
-      border-radius: 24px;
-      box-shadow: 0 0 55px rgba(156, 92, 255, 0.35);
-      margin-bottom: 35px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 7vw, 5.5rem);
-      color: var(--secondary);
-      margin-bottom: 18px;
-    }
-
-    .hero p {
-      font-size: clamp(1rem, 3vw, 1.4rem);
-      color: var(--muted);
+      width: 80%;
+      max-width: 450px;
       margin-bottom: 30px;
-      letter-spacing: 1px;
+      box-shadow: 0 0 40px rgba(181,140,255,0.4);
+      border-radius: 20px;
     }
 
-    .cta {
-      display: inline-block;
-      padding: 15px 34px;
-      border-radius: 50px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    h1 {
+      font-size: 3rem;
+      color: #B58CFF;
+      margin-bottom: 15px;
+      font-family: Georgia, serif;
+    }
+
+    p {
+      color: #CDBBEA;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      padding: 14px 30px;
+      border-radius: 40px;
+      background: linear-gradient(135deg, #6E3BB8, #B58CFF);
       color: white;
       text-decoration: none;
       font-weight: bold;
-      box-shadow: 0 0 30px rgba(181, 140, 255, 0.45);
+      box-shadow: 0 0 25px rgba(181,140,255,0.5);
     }
 
-    section {
-      padding: 90px 22px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .section-card {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(181, 140, 255, 0.25);
-      border-radius: 28px;
-      padding: 45px;
-      box-shadow: 0 0 35px rgba(110, 59, 184, 0.2);
-    }
-
-    section h2 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      color: var(--secondary);
-      margin-bottom: 24px;
-    }
-
-    section p {
-      font-size: 1.08rem;
-      line-height: 1.8;
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    .gold {
-      color: var(--gold);
-    }
-
-    footer {
-      text-align: center;
-      padding: 35px 20px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    @media (max-width: 700px) {
-      .section-card {
-        padding: 28px;
-      }
-
-      .menu-button {
-        top: 18px;
-        right: 18px;
-      }
-
-      .side-menu {
-        right: 18px;
-      }
+    .button:hover {
+      transform: scale(1.05);
     }
   </style>
 </head>
 
 <body>
 
-  <button class="menu-button" onclick="toggleMenu()">☰</button>
+  <div class="container">
+    <img src="pureviolet-logo.jpg" class="logo">
 
-  <div class="side-menu" id="sideMenu">
-    <a href="#home">Home</a>
-    <a href="#mission">Mission</a>
-    <a href="#about">Dear Lover</a>
-    <a href="#contact">Contact</a>
+    <h1>PureViolet</h1>
+
+    <p>
+      Refined indulgence. Unforgettable connection.<br><br>
+      A private world of elegance, softness, and presence — created for those
+      who value chemistry, discretion, and something deeper than the ordinary.
+    </p>
+
+    <a href="world.html" class="button">Enter My World</a>
   </div>
-
-  <main id="home" class="hero">
-    <div class="hero-content">
-      <img src="pureviolet-logo.jpg" alt="PureViolet Logo" class="logo" />
-
-      <h1>PureViolet</h1>
-      <p>Refined indulgence. Unforgettable connection.</p>
-
-      <a href="#about" class="cta">Enter My World</a>
-    </div>
-  </main>
-
-  <section id="mission">
-    <div class="section-card">
-      <h2>Our Mission</h2>
-      <p>
-        PureViolet was created to offer more than attention — it was designed to create atmosphere,
-        elegance, and a feeling that lingers long after the moment has passed.
-      </p>
-      <p>
-        Every detail is intentional: soft mystery, polished presentation, thoughtful communication,
-        and an experience rooted in respect, discretion, and connection.
-      </p>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="section-card">
-      <h2>Dear Lover</h2>
-      <p>
-        Welcome to my world — a place where softness meets confidence, where charm is quiet,
-        and where presence matters more than noise.
-      </p>
-      <p>
-        I believe in elegance, chemistry, meaningful energy, and moments that feel personal,
-        never rushed. PureViolet is not simply a name. It is a mood, a memory, and an invitation.
-      </p>
-      <p class="gold">
-        I prioritize respectful, well-written inquiries and genuine connection.
-      </p>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="section-card">
-      <h2>Request My Time</h2>
-      <p>
-        For serious and respectful inquiries, please include your name or alias, requested date,
-        preferred time, duration, and a brief introduction.
-      </p>
-      <p>
-        Toronto / GTA based. Select travel may be available.
-      </p>
-    </div>
-  </section>
-
-  <footer>
-    © 2026 PureViolet. All rights reserved.
-  </footer>
-
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("sideMenu");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
-    }
-  </script>
 
 </body>
 </html>
