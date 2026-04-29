@@ -24,6 +24,7 @@ body {
   overflow-x: hidden;
 }
 
+/* subtle animated sparkle background */
 body::before {
   content: "";
   position: fixed;
@@ -40,6 +41,7 @@ body::before {
   to { transform: translateY(-120px); }
 }
 
+/* page sections */
 .page {
   min-height: 100vh;
   padding: 90px 22px;
@@ -59,6 +61,7 @@ h1, h2 {
   text-shadow: 0 0 24px rgba(181,140,255,.35);
 }
 
+/* logo glow */
 .logo {
   width: min(85vw, 380px);
   border-radius: 28px;
@@ -71,6 +74,7 @@ h1, h2 {
   50% { box-shadow: 0 0 85px rgba(181,140,255,.75); }
 }
 
+/* menu button */
 .menu-btn {
   position: fixed;
   top: 20px;
@@ -86,6 +90,7 @@ h1, h2 {
   box-shadow: 0 0 30px rgba(181,140,255,.5);
 }
 
+/* animated menu (IMPORTANT: no display:none) */
 .menu {
   position: fixed;
   top: 75px;
@@ -104,11 +109,14 @@ h1, h2 {
   transition: .3s ease;
 }
 
-@keyframes menuDrop {
-  from { opacity: 0; transform: translateY(-10px) scale(.96); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+/* menu open state */
+.menu.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0) scale(1);
 }
 
+/* menu links */
 .menu a {
   display: block;
   color: white;
@@ -120,6 +128,20 @@ h1, h2 {
   color: var(--gold);
 }
 
+/* active scroll highlight */
+.menu a.active {
+  color: var(--gold);
+  text-shadow: 0 0 12px rgba(246,221,153,.6);
+}
+
+/* divider line */
+.menu hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin: 12px 0;
+}
+
+/* text */
 p {
   max-width: 760px;
   margin: 18px auto;
@@ -128,6 +150,12 @@ p {
   font-size: 1.06rem;
 }
 
+/* gold highlight text */
+.gold {
+  color: var(--gold);
+}
+
+/* buttons */
 .button {
   display: inline-block;
   margin-top: 25px;
@@ -146,6 +174,7 @@ p {
   box-shadow: 0 0 60px rgba(181,140,255,.8);
 }
 
+/* gallery grid */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -166,6 +195,11 @@ p {
   box-shadow: 0 0 60px rgba(181,140,255,.6);
 }
 
-.gold {
-  color: var(--gold);
+/* 🔥 DISCREET TEXT STYLE */
+.discreet {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  letter-spacing: 0.5px;
+  margin-top: 25px;
+  font-style: italic;
 }
