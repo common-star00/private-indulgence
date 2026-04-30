@@ -105,16 +105,24 @@
     </a>
   </p>
 
-  <a href="mailto:PureVioletBookings@gmail.com
-?subject=Private%20Inquiry
-&body=Hello%20PureViolet,%0D%0A%0D%0A
-Name/Alias:%20%0D%0A
-Requested%20Date:%20%0D%0A
-Time:%20%0D%0A
-Duration:%20%0D%0A%0D%0A
-Brief%20Introduction:%20"
-class="button">
-  Send Inquiry
+  <form class="contact-form" action="https://formsubmit.co/PureVioletBookings@gmail.com" method="POST">
+
+  <input type="hidden" name="_subject" value="New PureViolet Inquiry">
+  <input type="hidden" name="_captcha" value="false">
+
+  <input type="text" name="Name or Alias" placeholder="Name or Alias" required>
+
+  <input type="email" name="Email" placeholder="Your Email" required>
+
+  <input type="text" name="Requested Date" placeholder="Requested Date">
+
+  <input type="text" name="Preferred Time" placeholder="Preferred Time">
+
+  <textarea name="Message" placeholder="Brief Introduction" required></textarea>
+
+  <button type="submit" class="button">Send Inquiry</button>
+
+</form>
 </a>
 </section>
 
