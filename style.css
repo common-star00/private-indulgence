@@ -267,3 +267,9 @@ p {
 .contact-form textarea::placeholder {
   color: rgba(247,241,255,.55);
 }
+
+.whatsapp-button {
+  display: inline-block;
+  margin-top: 15px;
+  background: linear-gradient(135deg, #6E3BB8, #25D366);
+}
