@@ -239,3 +239,31 @@ p {
   margin: 0 auto;
   display: block;
 }
+
+.contact-form {
+  max-width: 520px;
+  margin: 30px auto 0;
+  display: grid;
+  gap: 14px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(181,140,255,.35);
+  background: rgba(15,6,26,.75);
+  color: var(--text);
+  outline: none;
+}
+
+.contact-form textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(247,241,255,.55);
+}
